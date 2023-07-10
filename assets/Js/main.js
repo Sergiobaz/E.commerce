@@ -76,6 +76,7 @@ function addToCartFromProducts(db) {
                 window.localStorage.setItem("cart", JSON.stringify(db.cart))
 
                 printProductsInCart(db)
+                printTotal(db)
         }
     })
 }
@@ -113,18 +114,7 @@ for (const product in db.cart) {
 cardProducts.innerHTML = html
 }
 
-async function main() {
-
-    const db = {
-        Products: (JSON.parse(window.localStorage.getItem('products'))) || await getProducts(),
-        cart: JSON.parse(window.localStorage.getItem('cart')) || {}
-    }
-
-    printProducts(db)
-    handleShowCart ()
-    addToCartFromProducts(db)
-    printProductsInCart(db)
-
+function handleProductsInCart(db) {
     const cartProdcts = document.querySelector(".card__products")
 
     cartProdcts.addEventListener("click", function (e) {
@@ -163,8 +153,43 @@ async function main() {
         }
         window.localStorage.setItem('cart', JSON.stringify(db.cart))
         printProductsInCart(db)
+        printTotal(db)
     })
+}
+
+function printTotal (db) {
+    const infoTotal = document.querySelector(".info__total")
+    const infoAmount = document.querySelector(".info__amount")
+
+    let totalPrice = 0
+    let amountProducts = 0
+
+    for (const product in db.cart) {
+        const {amount, price} = db.cart[product]
+        totalPrice += amount*price
+        amountProducts += amount
+        }
+
+        infoTotal.textContent = '$' + totalPrice + '.00'
+        infoAmount.textContent = amountProducts +' units'
 
 }
+
+async function main() {
+
+    const db = {
+        Products: (JSON.parse(window.localStorage.getItem('products'))) || await getProducts(),
+        cart: JSON.parse(window.localStorage.getItem('cart')) || {}
+    }
+
+    printProducts(db)
+    handleShowCart ()
+    addToCartFromProducts(db)
+    printProductsInCart(db)
+    handleProductsInCart(db)
+    printTotal(db)
+    }
+
+
 
 main()
