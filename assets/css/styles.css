@@ -1,0 +1,163 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body{
+    padding: 1rem;
+    background-color: #cccc;
+}
+
+header {
+    height: 50px;
+    background-color: white;
+    position: fixed;
+    width: 100%;
+    left: 0;
+    top: 0;
+    display: flex;
+}
+
+header > nav {
+    max-width: 1024px;
+    margin: 0 auto;
+    
+    width: 100%;
+    display: flex;
+
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0 1rem;
+}
+
+header > nav > i {
+    font-size: 2.5rem;
+    cursor: pointer;
+}
+
+img {
+    width: 100%;
+    display: block;
+}
+
+.products {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    max-width: 1024px;
+    gap: 1rem;
+    margin: 0 auto;
+    padding-top: 3rem;
+}
+
+
+
+.product{
+   background-color: white;
+    border-radius: 1rem;
+    box-shadow:  .5rem .5rem rgba(0,0,0,.15)
+    
+}
+
+.product__img{
+   padding: 1rem;
+}
+
+.product__info{
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.product__info p {
+    min-height: 36 px;
+}
+
+.product__info span {
+    font-weight: normal;
+    font-size: 0.8rem;
+}
+
+.bx-plus{
+    cursor: pointer;
+}
+
+
+/*--------------CART------------*/
+
+.cart {
+    height: calc(100vh - 50px);
+    width: 400px;
+    background-color: white;
+    position: fixed;
+    top: 50px;
+    right: -100%;
+    display: flex;
+    flex-direction: column;
+
+    transition: right 0.3s
+}
+
+.cart__show {
+    
+    right: 0;
+}
+
+.card__products {
+    height: 85%;
+    width: 100%;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    
+}
+
+.card__product {
+    padding: 1rem;
+    display: flex;
+    flex-direction: row;
+}
+
+.card__product--img {
+    width: 50%;
+    background-color: #cccc;
+    border-radius: 1rem;
+    margin: 0.1rem 0.5rem;
+}
+
+.card__product--body {
+    width: 50%;
+    display: flex;
+    flex-direction: column; 
+    justify-content: center;
+    gap: 0.3rem;
+    margin: 0.5rem;
+}
+
+.card__product--body--op {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.card__total {
+    background-color: aqua;
+    height: 15%;
+    width: 100%;
+}
+
+@media (max-width: 500px) {
+
+    .cart {
+        width: 100%;
+    }
+    
+}
+
+.card__product--body--op i {
+    cursor: pointer;
+}
+
