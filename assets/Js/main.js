@@ -21,7 +21,7 @@ function printProducts(db) {
     for (const product of db.Products) {
 
         html += `
-        <div class='product'>
+        <div class='product ${product.category}'>
 
             <div class="product__img">
                 <img src="${product.image}" alt="image" />
@@ -235,9 +235,8 @@ function toDarkMode() {
     
     const addDarkmode = document.querySelector('.addDarkMode')
     const removeDarkMode = document.querySelector('.removeDarkMode')
-    if(JSON.parse(localStorage.getItem("isdark"))) {
-        document.body.classList.add('darkmode')
-    }
+    if(JSON.parse(localStorage.getItem("isdark"))) document.body.classList.add('darkmode')
+
     addDarkmode.addEventListener("click", () => {
         localStorage.setItem('isdark', JSON.stringify(true))
         document.body.classList.add('darkmode')
@@ -265,6 +264,15 @@ async function main() {
     handleTotal(db)
     handlePrintAmountProducts(db)
     toDarkMode()
+
+    mixitup(".products", {
+        selectors: {
+            target: '.product'
+        },
+        animation: {
+            duration: 300
+        }
+    });
 
 }
 

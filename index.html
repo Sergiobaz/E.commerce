@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="./assets/css/styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mixitup/3.3.1/mixitup.min.js" integrity="sha512-nKZDK+ztK6Ug+2B6DZx+QtgeyAmo9YThZob8O3xgjqhw2IVQdAITFasl/jqbyDwclMkLXFOZRiytnUrXk/PM6A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="./assets/Js/main.js" defer></script>
     <title>Proyecto E-commerce</title>
 </head>
@@ -35,7 +36,16 @@
         </div>
     </menu>
 
+
     
+    <div class="filter__content">
+        <div class="filter">
+            <button type="button" data-filter="all">Show all</button>
+            <button type="button" data-filter=".shirt">Shirts</button>
+            <button type="button" data-filter=".hoddie">Hoodies</button>
+            <button type="button" data-filter=".sweater">Sweater</button>
+        </div>
+    </div>
 
     <div class="products"></div>
     <div class="cart">

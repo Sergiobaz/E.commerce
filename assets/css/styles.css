@@ -111,6 +111,7 @@ menu {
     background-color: #ffff;
     padding: 4rem 0.5rem;
     border-radius: 1rem;
+    min-width: 200px;
 }
 
 .showMore {
@@ -119,6 +120,32 @@ menu {
     padding: 1.5rem 3rem;
     font-size: 1.5rem;
     border-radius: 0.5rem;
+}
+
+/*-------FILTER-------*/
+
+.filter__content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.filter {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    
+    
+}
+
+.filter button {
+    cursor: pointer;
+    border: none;
+    padding: 2rem 4rem;
+    background-color: black;
+    color: white;
+    border-radius: 0.5rem;
+    font-size: large;
 }
 
 
