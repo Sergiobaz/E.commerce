@@ -31,7 +31,11 @@ function printProducts(db) {
                 <p>${product.name} | <span><b>Stock</b>: ${product.quantity} </span> </p>
             <h4>
                 $${product.price}
-                <i class='bx bx-plus' id='${product.id}'></i>
+                ${
+                    product.quantity
+                    ? `<i class='bx bx-plus' id='${product.id}'></i>`
+                    : "<span class='soldOut' >Sold out</span>"
+                }
             </h4>
 
             </div>
@@ -77,29 +81,30 @@ function addToCartFromProducts(db) {
 
                 printProductsInCart(db)
                 printTotal(db)
+                handlePrintAmountProducts(db)
         }
     })
 }
 
 function printProductsInCart(db) {
-    const cardProducts = document.querySelector(".card__products")
+    const cardProducts = document.querySelector(".cart__products")
 
 let html = ''
 
 for (const product in db.cart) {
    const { quantity,price,name,image,id,amount} = db.cart[product]
     html += `
-        <div class="card__product">
-            <div class="card__product--img">
+        <div class="cart__product">
+            <div class="cart__product--img">
                 <img src="${image}" alt="imagen"/>
             </div>
 
             
-            <div class="card__product--body">
+            <div class="cart__product--body">
                 <h4>${name} | $${price} </h4>
                 <p>Stock: ${quantity}</p>
             
-                <div class="card__product--body--op" id='${id}'>
+                <div class="cart__product--body--op" id='${id}'>
                 <i class='bx bx-minus'></i>
                 <span> ${amount} unit </span>
                 <i class='bx bx-plus' ></i>
@@ -115,7 +120,7 @@ cardProducts.innerHTML = html
 }
 
 function handleProductsInCart(db) {
-    const cartProdcts = document.querySelector(".card__products")
+    const cartProdcts = document.querySelector(".cart__products")
 
     cartProdcts.addEventListener("click", function (e) {
         
@@ -154,6 +159,7 @@ function handleProductsInCart(db) {
         window.localStorage.setItem('cart', JSON.stringify(db.cart))
         printProductsInCart(db)
         printTotal(db)
+        handlePrintAmountProducts(db)
     })
 }
 
@@ -175,6 +181,56 @@ function printTotal (db) {
 
 }
 
+function handleTotal (db) {
+    const btnBuy = document.querySelector(".btn__buy")
+
+    btnBuy.addEventListener('click', function () {
+       
+        if (!Object.values(db.cart).length) return alert('Pero tienes que tener algo en el carrito');
+        const response = confirm("Seguro que quieres comprar?")
+        if (!response) return
+        
+        const currentProducts = []
+
+        for (const product of db.Products) {
+            const productCart = db.cart[product.id]
+            if (product.id === productCart?.id){
+                currentProducts.push({
+                ...product,
+                quantity: product.quantity - productCart.amount
+            })
+            } else {
+                currentProducts.push(product)
+            }
+        } 
+
+        db.Products = currentProducts
+        db.cart = {}
+
+        window.localStorage.setItem('products', JSON.stringify(db.Products))
+        window.localStorage.setItem('cart', JSON.stringify(db.cart))
+
+        printTotal(db)
+        printProductsInCart(db)
+        printProducts(db)
+        handlePrintAmountProducts(db)
+
+    })
+}
+
+function handlePrintAmountProducts(db) {
+    const amountProducts = document.querySelector(".amountProducts")
+
+    let amount = 0
+    
+    for (const product in db.cart) {
+        
+        amount += db.cart[product].amount
+    }
+
+    amountProducts.textContent = amount
+}
+
 async function main() {
 
     const db = {
@@ -188,7 +244,10 @@ async function main() {
     printProductsInCart(db)
     handleProductsInCart(db)
     printTotal(db)
-    }
+    handleTotal(db)
+    handlePrintAmountProducts(db)
+
+}
 
 
 
