@@ -231,6 +231,24 @@ function handlePrintAmountProducts(db) {
     amountProducts.textContent = amount
 }
 
+function toDarkMode() {
+    
+    const addDarkmode = document.querySelector('.addDarkMode')
+    const removeDarkMode = document.querySelector('.removeDarkMode')
+    if(JSON.parse(localStorage.getItem("isdark"))) {
+        document.body.classList.add('darkmode')
+    }
+    addDarkmode.addEventListener("click", () => {
+        localStorage.setItem('isdark', JSON.stringify(true))
+        document.body.classList.add('darkmode')
+       
+    })
+    removeDarkMode.addEventListener("click", () => {
+        localStorage.setItem('isdark', JSON.stringify(false))
+        document.body.classList.remove('darkmode')
+    })
+}
+
 async function main() {
 
     const db = {
@@ -246,6 +264,7 @@ async function main() {
     printTotal(db)
     handleTotal(db)
     handlePrintAmountProducts(db)
+    toDarkMode()
 
 }
 

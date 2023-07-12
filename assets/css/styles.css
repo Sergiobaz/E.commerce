@@ -1,3 +1,23 @@
+
+:root {
+    --first-color: hsl(354, 78%, 60%);
+    --button-color: hsl(0, 0%, 17%);
+    --button-color-alt: hsl(0, 0%, 21%);
+    --card-color: hsl(0, 0%, 90%);
+    --title-color: hsl(0, 0%, 15%);
+    --text-color: hsl(0, 0%, 35%);
+    --text-color-light: hsl(0, 0%, 55%);
+    --body-color: hsl(206, 4%, 97%);
+    --container-color: hsl(0, 0%, 100%);
+    --border-color: hsl(0, 0%, 94%);
+    --h-header: 3rem;
+    --shadow-general: 0 .5rem 1rem rgba(0, 0, 0, .15);
+    --z-header-nav: 1000;
+    --z-handle-icon-navbar: 2000;
+    --z-content-cart: 3000;
+    --z-modalproduct: 4000;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -7,7 +27,29 @@
 
 body{
     padding: 1rem;
-    background-color: #cccc;
+    background-color: var(--body-color);
+}
+
+.bx-sun {
+    visibility: hidden;
+}
+
+body.darkmode {
+    --first-color: hsl(182, 53%, 74%);
+    --button-color: hsl(246, 16%, 12%);
+    --button-color-alt: hsl(0, 0%, 28%);
+    --card-color: hsla(246, 16%, 5%);
+    --title-color: hsl(0, 0%, 95%);
+    --text-color: hsl(0, 0%, 75%);
+    --body-color: hsl(249, 19%, 14%);
+    --container-color: hsl(246, 16%, 12%);
+    --border-color: hsl(0, 0%, 20%);
+    .bxs-moon {
+        visibility: hidden;
+    }
+    .bx-sun {
+        visibility:initial ;
+    }
 }
 
 header {
@@ -40,6 +82,10 @@ header > nav {
 header > nav > i {
     font-size: 2.5rem;
     cursor: pointer;
+}
+
+.bx-sun {
+    visibility: hidden;
 }
 
 /*--------MENU-----*/
@@ -110,7 +156,7 @@ img {
 
 
 .product{
-   background-color: white;
+   background-color: var(--card-color);
     border-radius: 1rem;
     box-shadow:  .5rem .5rem rgba(0,0,0,.15)
     
