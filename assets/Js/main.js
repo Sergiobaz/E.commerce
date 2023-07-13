@@ -294,18 +294,34 @@ async function main() {
     navBarAnimation ()
     screenLoader ()
 
-    const nameProductStyleHTML = document.querySelector('.nameProductStyle')
+    const nameProductStyleHTML = document.querySelectorAll('.nameProductStyle')
     const modalSergioHTML = document.querySelector('.modal-sergio')
     const iconCloseHTML = document.querySelector('.iconClose')
+    const modalContentInfoHTML = document.querySelector('.modal__content__info')
 
-    nameProductStyleHTML.addEventListener('click', () => {
+    nameProductStyleHTML.forEach(function(element) {
+        element.addEventListener('click', () => {
         modalSergioHTML.classList.remove("modal-sergio-hidden")
-    })
-
+        });
+    });
     iconCloseHTML.addEventListener('click', () => {
         modalSergioHTML.classList.add("modal-sergio-hidden")
-
     })
+
+    let html = ``
+
+
+    nameProductStyleHTML.forEach(function(contenedor) {
+        contenedor.addEventListener('click', function(event) {
+            const contenido = event.target.innerHTML
+            const productoFiltrado = db.Products.find(function(producto) {
+            return producto.name === contenido;
+              }); 
+        })
+    })
+    
+    modalContentInfoHTML.innerHTML = html
+
 }
 
 

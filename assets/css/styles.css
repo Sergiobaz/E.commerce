@@ -476,3 +476,9 @@ img {
     visibility: hidden;
     opacity: 1;
    }
+
+   .modal__content__info {
+    background-color: #cccc;
+    height: 100px;
+    width: 100px;
+   }
