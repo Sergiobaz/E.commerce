@@ -54,16 +54,18 @@ body.darkmode {
 
 header {
     height: 50px;
-    background-color: #cccc;
     position: fixed;
     width: 100%;
     left: 0;
     top: 0;
     display: flex;
+    transition: height 0.5s ease;
+
 }
 
 .header__scrolled {
-    height: 80px;
+    background-color: var(--border-color);
+    height: 70px;
 }
 
 header > nav {

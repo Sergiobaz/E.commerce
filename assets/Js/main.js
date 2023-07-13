@@ -248,6 +248,26 @@ function toDarkMode() {
     })
 }
 
+function handlefilter() {
+    mixitup(".products", {
+        selectors: {
+            target: '.product'
+        },
+        animation: {
+            duration: 300
+        }
+    });
+}
+
+function navBarAnimation () {
+    window.addEventListener('scroll', function() {
+        let header = document.getElementById('head');
+        if (this.window.scrollY < 50) { header.classList.remove('header__scrolled') 
+      } else { header.classList.add('header__scrolled');
+      }
+      });
+}
+
 async function main() {
 
     const db = {
@@ -264,15 +284,10 @@ async function main() {
     handleTotal(db)
     handlePrintAmountProducts(db)
     toDarkMode()
+    handlefilter()
+    navBarAnimation ()
 
-    mixitup(".products", {
-        selectors: {
-            target: '.product'
-        },
-        animation: {
-            duration: 300
-        }
-    });
+    
 
 }
 
