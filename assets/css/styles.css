@@ -87,9 +87,13 @@ header > nav > i {
     cursor: pointer;
 }
 
-.bx-sun {
-    visibility: hidden;
+header > nav > button {
+    background-color: #fff;
+    border: none;
+    font-size: larger;
 }
+
+
 
 /*--------MENU-----*/
 
