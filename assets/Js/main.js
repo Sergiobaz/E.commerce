@@ -268,6 +268,12 @@ function navBarAnimation () {
       });
 }
 
+function screenLoader () {
+    window.addEventListener("load", function(){
+        this.document.getElementById("loader").classList.toggle("loader2")
+    })
+}
+
 async function main() {
 
     const db = {
@@ -286,6 +292,7 @@ async function main() {
     toDarkMode()
     handlefilter()
     navBarAnimation ()
+    screenLoader ()
 
     
 
