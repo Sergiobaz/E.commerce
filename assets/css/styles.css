@@ -45,6 +45,7 @@ body.darkmode {
     --body-color: hsl(249, 19%, 14%);
     --container-color: hsl(246, 16%, 12%);
     --border-color: hsl(0, 0%, 20%);
+    
     .bxs-moon {
         visibility: hidden;
     }
@@ -429,4 +430,49 @@ img {
 
    .loader2 {
     clip-path: circle(0% at 100% 0);
+   }
+
+/*-------MODAL------*/
+
+
+.modal-sergio {
+    height: 100vh;
+    width: 100%;
+    background-color: #00000090;
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    display: grid;
+    place-items: center;
+}
+
+.modal-content {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 1rem;
+    position: relative;
+}
+
+.iconClose {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background-color: red;
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    cursor: pointer;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+   .nameProductStyle {
+    cursor: pointer;
+   }
+
+   .modal-sergio-hidden {
+    visibility: hidden;
+    opacity: 1;
    }

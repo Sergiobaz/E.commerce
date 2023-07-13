@@ -28,7 +28,7 @@ function printProducts(db) {
             </div>
 
             <div class="product__info">
-                <p>${product.name} | <span><b>Stock</b>: ${product.quantity} </span> </p>
+                <p> <span class="nameProductStyle" id="${product.id}" >${product.name}</span> | <span><b>Stock</b>: ${product.quantity} </span> </p>
             <h4>
                 $${product.price}
                 ${
@@ -294,10 +294,19 @@ async function main() {
     navBarAnimation ()
     screenLoader ()
 
-    
+    const nameProductStyleHTML = document.querySelector('.nameProductStyle')
+    const modalSergioHTML = document.querySelector('.modal-sergio')
+    const iconCloseHTML = document.querySelector('.iconClose')
 
+    nameProductStyleHTML.addEventListener('click', () => {
+        modalSergioHTML.classList.remove("modal-sergio-hidden")
+    })
+
+    iconCloseHTML.addEventListener('click', () => {
+        modalSergioHTML.classList.add("modal-sergio-hidden")
+
+    })
 }
-
 
 
 main()
