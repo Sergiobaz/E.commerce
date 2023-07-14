@@ -28,7 +28,7 @@ function printProducts(db) {
             </div>
 
             <div class="product__info">
-                <p> <span class="nameProductStyle" id="${product.id}" >${product.name}</span> | <span><b>Stock</b>: ${product.quantity} </span> </p>
+                <p> <span class="nameProductStyle" id="${product.id}" >${product.name}</span> <br> <br> <span><b>Stock</b>: ${product.quantity} </span> </p>
             <h4>
                 $${product.price}
                 ${
@@ -215,6 +215,8 @@ function handleTotal (db) {
         printProducts(db)
         handlePrintAmountProducts(db)
 
+        location.reload()
+
     })
 }
 
@@ -274,6 +276,56 @@ function screenLoader () {
     })
 }
 
+function crazyModal (db) {
+    
+    const nameProductStyleHTML = document.querySelectorAll('.nameProductStyle')
+    const modalSergioHTML = document.querySelector('.modal-sergio')
+    const iconCloseHTML = document.querySelector('.iconClose')
+    const modalContentInfoHTML = document.querySelector('.modal__content__info')
+
+    nameProductStyleHTML.forEach(function(element) {
+        element.addEventListener('click', () => {
+        modalSergioHTML.classList.remove("modal-sergio-hidden")
+        });
+    });
+    iconCloseHTML.addEventListener('click', () => {
+        modalSergioHTML.classList.add("modal-sergio-hidden")
+    })
+
+    let html = ``
+    
+    nameProductStyleHTML.forEach(function(contenedor) {
+        contenedor.addEventListener('click', function(event) {
+            const contenido = event.target.innerHTML
+            const productoFiltrado = db.Products.find(function(producto) {
+            return producto.name === contenido;
+              });
+
+                const { image, price, description, name, quantity,id, category} = productoFiltrado
+
+              html = `
+                <div class="imagen__modal">
+                    <img src="${image}" alt="imagen__modal">
+                </div>
+                <div class="modal__information1">  
+                        <h3>${name} - ${category}</h3>
+                        <h4>${description}</h4>
+                </div>
+                <div class="modal__information2">
+                        <p>$${price}</p>
+                        <button><i class='bx bx-plus' id='${id}'></i></button>
+                        <p>Stock: ${quantity}</p>
+                </div>
+              `
+
+
+              modalContentInfoHTML.innerHTML = html
+
+        })
+    })
+
+}
+
 async function main() {
 
     const db = {
@@ -293,34 +345,7 @@ async function main() {
     handlefilter()
     navBarAnimation ()
     screenLoader ()
-
-    const nameProductStyleHTML = document.querySelectorAll('.nameProductStyle')
-    const modalSergioHTML = document.querySelector('.modal-sergio')
-    const iconCloseHTML = document.querySelector('.iconClose')
-    const modalContentInfoHTML = document.querySelector('.modal__content__info')
-
-    nameProductStyleHTML.forEach(function(element) {
-        element.addEventListener('click', () => {
-        modalSergioHTML.classList.remove("modal-sergio-hidden")
-        });
-    });
-    iconCloseHTML.addEventListener('click', () => {
-        modalSergioHTML.classList.add("modal-sergio-hidden")
-    })
-
-    let html = ``
-
-
-    nameProductStyleHTML.forEach(function(contenedor) {
-        contenedor.addEventListener('click', function(event) {
-            const contenido = event.target.innerHTML
-            const productoFiltrado = db.Products.find(function(producto) {
-            return producto.name === contenido;
-              }); 
-        })
-    })
-    
-    modalContentInfoHTML.innerHTML = html
+    crazyModal (db)
 
 }
 
