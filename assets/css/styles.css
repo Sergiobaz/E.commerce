@@ -162,6 +162,7 @@ menu {
     border-radius: 0.5rem;
     transition: background-color 0.5s;
     border: none;
+    cursor: pointer;
 }
 
 .showMore:hover{
@@ -479,18 +480,26 @@ ul {
 
 .padre__footer h3 {
     color: var(--first-color);
+    cursor: pointer;
 }
 
 .bxl-facebook {
-    color: var(--byw-color)
+    color: var(--byw-color);
+    cursor: pointer;
 }
 
 .bxl-twitter {
-    color: var(--byw-color)    
+    color: var(--byw-color);  
+    cursor: pointer; 
 }
 
 .bxl-instagram {
-    color: var(--byw-color)       
+    color: var(--byw-color); 
+    cursor: pointer;      
+}
+
+.padre__footer div p {
+    cursor: pointer;
 }
 
 /*-----LOADING------*/
